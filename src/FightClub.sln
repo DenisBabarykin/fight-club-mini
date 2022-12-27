@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.Dto", "FightClub.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.HttpClient", "FightClub.HttpClient\FightClub.HttpClient.csproj", "{12AA95B7-7E07-49FD-8C63-80B3EBDD14B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.Core", "FightClub.Core\FightClub.Core.csproj", "{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{12AA95B7-7E07-49FD-8C63-80B3EBDD14B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AA95B7-7E07-49FD-8C63-80B3EBDD14B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AA95B7-7E07-49FD-8C63-80B3EBDD14B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

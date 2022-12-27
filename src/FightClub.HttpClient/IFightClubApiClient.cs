@@ -19,4 +19,9 @@ public interface IFightClubApiClient
     /// <param name="round">Номер раунда.</param>
     /// <returns>Общий лог для раунда, если он уже есть. Или null, если раунд ещё не был завершен.</returns>
     Task<RoundLog?> GetRoundLogAsync(int round);
+
+    /// <summary>
+    /// Удаляет текущую игру.
+    /// </summary>
+    Task DeleteBattleAsync();
 }
