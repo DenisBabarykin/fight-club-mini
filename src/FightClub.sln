@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.HttpClient", "Fig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.Core", "FightClub.Core\FightClub.Core.csproj", "{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.WinFormsCommentator", "FightClub.WinFormsCommentator\FightClub.WinFormsCommentator.csproj", "{37EE85BC-9956-4527-8484-6D9F99851418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37EE85BC-9956-4527-8484-6D9F99851418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37EE85BC-9956-4527-8484-6D9F99851418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37EE85BC-9956-4527-8484-6D9F99851418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37EE85BC-9956-4527-8484-6D9F99851418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
