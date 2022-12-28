@@ -5,7 +5,7 @@ namespace FightClub.HttpClient;
 /// <summary>
 /// Интерфейс клиента к серверу FightClub.
 /// </summary>
-public interface IFightClubApiClient
+public interface IFightClubApiClient : IDisposable
 {
     /// <summary>
     /// Получить текущее состояние боя.
