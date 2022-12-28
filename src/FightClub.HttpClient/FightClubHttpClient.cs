@@ -16,7 +16,7 @@ public class FightClubHttpClient : IFightClubApiClient
     public FightClubHttpClient()
     {
         _httpClient = new System.Net.Http.HttpClient();
-        _httpClient.BaseAddress = new Uri("http://95.165.152.195:7000/api/");
+        _httpClient.BaseAddress = new Uri("http://95.165.152.195:5000/api/");
     }
 
     public async Task<Battle?> GetBattleAsync()
