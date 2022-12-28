@@ -2,5 +2,101 @@
     ViewData["Title"] = "Бой";
 }
 
-<h1>Вьюха для боя игрока @ViewBag.PlayerName</h1>
-Простой текст
+<div class="container">
+    @if (ViewBag.GameStarted && ViewBag.CanFight && ViewBag.IsAlive)
+    {
+        <div class="row mt-3">
+            <div class="col text-center alert alert-info me-2">@ViewBag.PlayerName</div>
+            <div class="col text-center alert alert-info">@ViewBag.EnemyName</div>
+        </div>
+        <div class="row">
+            <div class="col text-center alert alert-info">Здоровье</div>
+        </div>
+        <div class="row">
+            <div class="col text-center alert alert-info me-2">❤ @ViewBag.PlayerCurrentHp / @ViewBag.PlayerMaxHp</div>
+            <div class="col text-center alert alert-info">❤ @ViewBag.EnemyCurrentHp / @ViewBag.EnemyMaxHp</div>
+        </div>
+        <div class="row">
+            <div class="col text-center alert alert-info">Выбери место удара</div>
+        </div>
+        <div class="row">
+            <div class="col alert alert-info">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioHit" id="head" checked>
+                            <label class="form-check-label" for="head">Голова</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioHit" id="body">
+                            <label class="form-check-label" for="body">Корпус</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioHit" id="groin">
+                            <label class="form-check-label" for="groin">Пах</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioHit" id="legs">
+                            <label class="form-check-label" for="legs">Ноги</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center alert alert-info">Выбери место блока</div>
+        </div>
+        <div class="row">
+            <div class="col alert alert-info">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="headAndBody" checked>
+                            <label class="form-check-label" for="headAndBody">Голова + корпус</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="bodyAndGroin">
+                            <label class="form-check-label" for="bodyAndGroin">Корпус + пах</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="groinAndLegs">
+                            <label class="form-check-label" for="groinAndLegs">Пах + ноги</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="legsAndHead">
+                            <label class="form-check-label" for="legsAndHead">Ноги + голова</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input type="button" value="Подтвердить" class="btn btn-secondary col btn-lg text-center w-100" onClick="document.location.reload(true)">
+        </div>
+    }
+    else if (ViewBag.GameStarted && ViewBag.IsAlive)
+    {
+        <div class="alert alert-info mt-3">Есть пара мгновений на то, чтобы восстановить дыхание. Приготовьтесь!</div>
+        <div class="text-center d-grid gap-2">
+            <input type="button" value="Обновить" class="btn btn-secondary btn-lg" onClick="document.location.reload(true)">
+        </div>
+    }
+    else if (ViewBag.GameStarted)
+    {
+        <div class="alert alert-danger mt-3">Вы бились как лев, но удача была не на вашей стороне. Подлым приемом вас отправили в нокаут!</div>
+        <div class="text-center d-grid gap-2">
+            <input type="button" value="Обновить" class="btn btn-secondary btn-lg" onClick="document.location.reload(true)">
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-3">Бой ещё не начался!</div>
+        <div class="text-center d-grid gap-2">
+            <input type="button" value="Обновить" class="btn btn-secondary btn-lg" onClick="document.location.reload(true)">
+        </div>
+    }
+</div>
