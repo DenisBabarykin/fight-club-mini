@@ -10,6 +10,9 @@ namespace FightClub.Dto
     [Serializable]
     public sealed class Team
     {
+        /// <summary>
+        /// Коллекция игроков в команде.
+        /// </summary>
         public List<Player> Players { get; set; } = new List<Player>();
 
         public Team()
@@ -17,6 +20,7 @@ namespace FightClub.Dto
             
         }
 
+        /// <param name="players">Коллекция игроков в команде.</param>
         public Team(List<Player> players)
         {
             Players = players;
