@@ -66,6 +66,7 @@ namespace FightClub.WinFormsCommentator
                     Battle currentBattle = await _fightClubHttpClient.GetBattleAsync();
                     ProcessNewRound(currentBattle, currentLog);
                     finished = currentBattle.IsFinished;
+                    lastProcessedRound++;
                 }
 
                 await Task.Delay(5000); // потом надо будет уменьшить до 2000 мс
