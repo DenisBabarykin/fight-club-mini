@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace FightClub.Dto
@@ -12,51 +13,61 @@ namespace FightClub.Dto
         /// <summary>
         /// Имя в именительном падеже.
         /// </summary>
+        [JsonRequired]
         public string Name { get; set; } = "";
 
         /// <summary>
         /// Имя в дательном падеже.
         /// </summary>
+        [JsonRequired]
         public string DativeName { get; set; } = "";
 
         /// <summary>
         /// Числовой идентификатор аватарки. Если 0 - то не задан.
         /// </summary>
+        [JsonRequired]
         public int AvatarId { get; set; }
 
         /// <summary>
         /// Суммарные очки силы.
         /// </summary>
+        [JsonRequired]
         public int Strength { get; set; }
 
         /// <summary>
         /// Суммарные очки выносливости.
         /// </summary>
+        [JsonRequired]
         public int Endurance { get; set; }
 
         /// <summary>
         /// Суммарные очки ловкости.
         /// </summary>
+        [JsonRequired]
         public int Agility { get; set; }
 
         /// <summary>
         /// Суммарные очки интуиции.
         /// </summary>
+        [JsonRequired]
         public int Intuition { get; set; }
 
         /// <summary>
         /// Первоначальное (максимальное) количество здоровья.
         /// </summary>
+        [JsonRequired]
         public int MaxHp { get; set; }
 
         /// <summary>
         /// Текущее количество здоровья. Уменьшается в процессе боя. Если 0 или меньше, то Игрок уже в нокауте.
         /// </summary>
+        [JsonRequired]
         public int CurrentHp { get; set; }
 
         /// <summary>
         /// Коллекция с числовыми идентификаторами купленных вещей. Если вещей нет, то коллекция пустая.
         /// </summary>
+        [JsonRequired]
         public List<int> Items { get; set; } = new List<int>();
 
         public Player()
