@@ -98,7 +98,7 @@ public class FightClubMockFacade : IFightClubFacade
         await _semaphore.WaitAsync();
         try
         {
-            BattleState = new Battle(battleConfig.TeamOne, battleConfig.TeamTwo, 1, false);
+            BattleState = new Battle(new Team(), new Team(), 1, false);
         }
         finally
         {
