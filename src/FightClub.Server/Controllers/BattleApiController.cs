@@ -23,9 +23,16 @@ public class BattleApiController : ControllerBase
     }
 
     [HttpDelete]
-    public IActionResult StartNewBattle()
+    public IActionResult DeleteBattle()
     {
         _mock.Reset();
+        return Ok();
+    }
+
+    [HttpPost]
+    public IActionResult StartNewBattle([FromBody] BattleConfig battleConfig)
+    {
+
         return Ok();
     }
 }

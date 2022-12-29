@@ -48,6 +48,12 @@ public class FightClubHttpClient : IFightClubApiClient
         await _httpClient.DeleteAsync("battle");
     }
 
+    public async Task StartNewBattleAsync(BattleConfig battleConfig)
+    {
+        string stringPayload = JsonConvert.SerializeObject(battleConfig, Formatting.None);
+        await _httpClient.PostAsync("battle", new StringContent(stringPayload, Encoding.UTF8, "application/json"));
+    }
+
     public void Dispose()
     {
         _httpClient.Dispose();

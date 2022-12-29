@@ -24,4 +24,10 @@ public interface IFightClubApiClient : IDisposable
     /// Удаляет текущую игру.
     /// </summary>
     Task DeleteBattleAsync();
+
+    /// <summary>
+    /// Начать новую игру с переданным конфигом команд, игроков и т.д.
+    /// </summary>
+    /// <param name="battleConfig">Конфиг битвы, содержит данные об игроках и командах.</param>
+    Task StartNewBattleAsync(BattleConfig battleConfig);
 }
