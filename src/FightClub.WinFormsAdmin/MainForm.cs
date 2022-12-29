@@ -60,7 +60,8 @@ public partial class MainForm : Form
                 new Player("Света", "Свете", 4, 6, 7, 6, 16, 60, 15, new List<int>() { 7, 8 }),
                 new Player("Маша", "Маше", 5, 15, 12, 5, 5, 150, 121, new List<int>() { 9, 10 }),
                 new Player("Вова", "Вове", 6, 5, 5, 20, 5, 50, 45, new List<int>() { 11, 12 })
-            })
+            }),
+            new FightEngineParams()
         );
         tbxBattleConfig.Text = JsonConvert.SerializeObject(battleConfig, Formatting.Indented);
         toolStripStatusLabel.Text = "Конфиг валиден!";
