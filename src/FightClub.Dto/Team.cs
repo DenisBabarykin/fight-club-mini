@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +14,7 @@ namespace FightClub.Dto
         /// <summary>
         /// Коллекция игроков в команде.
         /// </summary>
+        [JsonRequired]
         public List<Player> Players { get; set; } = new List<Player>();
 
         public Team()

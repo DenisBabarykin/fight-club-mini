@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.Server", "FightClub.Server\FightClub.Server.csproj", "{F1BAE164-6E2F-4C43-B5EC-46924CC2A363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightClub.Server", "FightClub.Server\FightClub.Server.csproj", "{F1BAE164-6E2F-4C43-B5EC-46924CC2A363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.Dto", "FightClub.Dto\FightClub.Dto.csproj", "{7080DAEF-BDEE-49A3-99CE-FBB37D84DFFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightClub.Dto", "FightClub.Dto\FightClub.Dto.csproj", "{7080DAEF-BDEE-49A3-99CE-FBB37D84DFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.HttpClient", "FightClub.HttpClient\FightClub.HttpClient.csproj", "{12AA95B7-7E07-49FD-8C63-80B3EBDD14B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightClub.HttpClient", "FightClub.HttpClient\FightClub.HttpClient.csproj", "{12AA95B7-7E07-49FD-8C63-80B3EBDD14B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.Core", "FightClub.Core\FightClub.Core.csproj", "{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightClub.Core", "FightClub.Core\FightClub.Core.csproj", "{5DFA7DD8-0120-4AD5-8368-3646AFD4E55B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.WinFormsCommentator", "FightClub.WinFormsCommentator\FightClub.WinFormsCommentator.csproj", "{37EE85BC-9956-4527-8484-6D9F99851418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightClub.WinFormsCommentator", "FightClub.WinFormsCommentator\FightClub.WinFormsCommentator.csproj", "{37EE85BC-9956-4527-8484-6D9F99851418}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FightClub.WinFormsAdmin", "FightClub.WinFormsAdmin\FightClub.WinFormsAdmin.csproj", "{7FE2134E-C6B9-4602-B13C-75F3673FB4D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{37EE85BC-9956-4527-8484-6D9F99851418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37EE85BC-9956-4527-8484-6D9F99851418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37EE85BC-9956-4527-8484-6D9F99851418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FE2134E-C6B9-4602-B13C-75F3673FB4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE2134E-C6B9-4602-B13C-75F3673FB4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FE2134E-C6B9-4602-B13C-75F3673FB4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE2134E-C6B9-4602-B13C-75F3673FB4D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace FightClub.Dto
 {
@@ -13,11 +15,13 @@ namespace FightClub.Dto
         /// <summary>
         /// Первая команда.
         /// </summary>
+        [JsonRequired]
         public Team TeamOne { get; set; } = new Team();
 
         /// <summary>
         /// Вторая команда.
         /// </summary>
+        [JsonRequired]
         public Team TeamTwo { get; set; } = new Team();
 
         public BattleConfig()
