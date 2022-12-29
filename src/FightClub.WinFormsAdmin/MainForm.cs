@@ -1,3 +1,4 @@
+using System.Diagnostics.Eventing.Reader;
 using FightClub.Dto;
 using FightClub.HttpClient;
 using Newtonsoft.Json;
@@ -7,6 +8,8 @@ namespace FightClub.WinFormsAdmin;
 public partial class MainForm : Form
 {
     private readonly FightClubHttpClient _fightClubHttpClient = new FightClubHttpClient();
+
+    private bool IsValid { get; set; } = true;
 
     public MainForm()
     {
@@ -22,6 +25,11 @@ public partial class MainForm : Form
     {
         try
         {
+            if (!IsValid)
+            {
+                throw new ArgumentException("Не удалось начать новую игру: конфиг не валиден!");
+            }
+
             var battleConfig = JsonConvert.DeserializeObject<BattleConfig>(tbxBattleConfig.Text);
             if (battleConfig != null)
             {
@@ -81,12 +89,14 @@ public partial class MainForm : Form
             toolStripStatusLabel.Text = "Конфиг валиден!";
             toolStripStatusLabel.ForeColor = Color.White;
             toolStripStatusLabel.BackColor = Color.Green;
+            IsValid = true;
         }
         else
         {
             toolStripStatusLabel.Text = "Ошибка в конфиге!";
             toolStripStatusLabel.ForeColor = Color.White;
             toolStripStatusLabel.BackColor = Color.Red;
+            IsValid = false;
         }
     }
 }
