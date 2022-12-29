@@ -6,8 +6,8 @@
     @if (ViewBag.GameStarted && ViewBag.CanFight && ViewBag.IsAlive)
     {
         <div class="row mt-3">
-            <div class="col text-center alert alert-info me-2">@ViewBag.PlayerName</div>
-            <div class="col text-center alert alert-info">@ViewBag.EnemyName</div>
+            <div id="playerNameDiv" class="col text-center alert alert-info me-2">@ViewBag.PlayerName</div>
+            <div id="enemyNameDiv" class="col text-center alert alert-info">@ViewBag.EnemyName</div>
         </div>
         <div class="row">
             <div class="col text-center alert alert-info">Здоровье</div>
@@ -24,21 +24,21 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioHit" id="head" checked>
+                            <input class="form-check-input" type="radio" name="radioHit" id="head" value="Head" checked>
                             <label class="form-check-label" for="head">Голова</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioHit" id="body">
+                            <input class="form-check-input" type="radio" name="radioHit" id="body" value="Body">
                             <label class="form-check-label" for="body">Корпус</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioHit" id="groin">
+                            <input class="form-check-input" type="radio" name="radioHit" id="groin" value="Groin">
                             <label class="form-check-label" for="groin">Пах</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioHit" id="legs">
+                            <input class="form-check-input" type="radio" name="radioHit" id="legs" value="Legs">
                             <label class="form-check-label" for="legs">Ноги</label>
                         </div>
                     </div>
@@ -53,21 +53,21 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioBlock" id="headAndBody" checked>
+                            <input class="form-check-input" type="radio" name="radioBlock" id="headAndBody" value="Head|Body" checked>
                             <label class="form-check-label" for="headAndBody">Голова + корпус</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioBlock" id="bodyAndGroin">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="bodyAndGroin" value="Body|Groin">
                             <label class="form-check-label" for="bodyAndGroin">Корпус + пах</label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioBlock" id="groinAndLegs">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="groinAndLegs" value="Groin|Legs">
                             <label class="form-check-label" for="groinAndLegs">Пах + ноги</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioBlock" id="legsAndHead">
+                            <input class="form-check-input" type="radio" name="radioBlock" id="legsAndHead" value="Legs|Head">
                             <label class="form-check-label" for="legsAndHead">Ноги + голова</label>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="row">
-            <input type="button" value="Подтвердить" class="btn btn-secondary col btn-lg text-center w-100" onClick="document.location.reload(true)">
+            <input type="button" value="Подтвердить" class="btn btn-secondary col btn-lg text-center w-100" onClick="OnSubmitButtonClicked()">
         </div>
     }
     else if (ViewBag.GameStarted && ViewBag.IsAlive)
@@ -100,3 +100,31 @@
         </div>
     }
 </div>
+
+@section Scripts
+{
+    <script>
+        async function OnSubmitButtonClicked() {
+            const playerName = document.getElementById("playerNameDiv").textContent;
+            const enemyName = document.getElementById("enemyNameDiv").textContent;
+            const hit = document.querySelector('input[name="radioHit"]:checked').value;
+            const block = document.querySelector('input[name="radioBlock"]:checked').value;
+
+            const dataToSend = JSON.stringify({ "playerName": playerName, "enemyName": enemyName, "hit": hit, "block": block });
+
+            const response = await fetch("/api/skirmish", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: dataToSend
+            });
+
+            if (response.status != "200")
+                alert("Ошибка. Сервер вернул " + response.status);
+
+            document.location.reload(true);
+        }
+    </script>
+}
