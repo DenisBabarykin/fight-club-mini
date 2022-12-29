@@ -12,6 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\FightClub.Core\FightClub.Core.csproj" />
 		<ProjectReference Include="..\FightClub.Dto\FightClub.Dto.csproj" />
 	</ItemGroup>
 

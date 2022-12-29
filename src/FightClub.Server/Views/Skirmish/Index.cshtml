@@ -3,7 +3,7 @@
 }
 
 <div class="container">
-    @if (ViewBag.GameStarted && ViewBag.CanFight && ViewBag.IsAlive)
+    @if (ViewBag.GameStarted && ViewBag.CanFight && ViewBag.IsAlive && !ViewBag.IsWin)
     {
         <div class="row mt-3">
             <div id="playerNameDiv" class="col text-center alert alert-info me-2">@ViewBag.PlayerName</div>
@@ -17,7 +17,7 @@
             <div class="col text-center alert alert-info">❤ @ViewBag.EnemyCurrentHp / @ViewBag.EnemyMaxHp</div>
         </div>
         <div class="row">
-            <div class="col text-center alert alert-info">Выбери место удара</div>
+            <div class="col text-center alert alert-info">Выбери место удара🗡</div>
         </div>
         <div class="row">
             <div class="col alert alert-info">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col text-center alert alert-info">Выбери место блока</div>
+            <div class="col text-center alert alert-info">Выбери место блока🛡</div>
         </div>
         <div class="row">
             <div class="col alert alert-info">
@@ -78,14 +78,23 @@
             <input type="button" value="Подтвердить" class="btn btn-secondary col btn-lg text-center w-100" onClick="OnSubmitButtonClicked()">
         </div>
     }
-    else if (ViewBag.GameStarted && ViewBag.IsAlive)
+    else if (ViewBag.GameStarted && ViewBag.IsAlive && !ViewBag.CanFight && !ViewBag.IsWin)
     {
         <div class="alert alert-info mt-3">Есть пара мгновений на то, чтобы восстановить дыхание. Приготовьтесь!</div>
         <div class="text-center d-grid gap-2">
             <input type="button" value="Обновить" class="btn btn-secondary btn-lg" onClick="document.location.reload(true)">
         </div>
     }
-    else if (ViewBag.GameStarted)
+    else if (ViewBag.IsWin)
+    {
+        <div class="alert alert-success mt-3">
+            Стальная воля и стратегическое мышление дали вам решающее преимущество в этом нелегком бою. Все враги пали и лежат у ваших ног. Наслаждайтесь своим триумфом! И, разумеется, призами от Серчика с Соней ;)
+        </div>
+        <div class="text-center d-grid gap-2">
+            <input type="button" value="Обновить" class="btn btn-secondary btn-lg" onClick="document.location.reload(true)">
+        </div>
+    }
+    else if (!ViewBag.IsAlive)
     {
         <div class="alert alert-danger mt-3">Вы бились как лев, но удача была не на вашей стороне. Подлым приемом вас отправили в нокаут!</div>
         <div class="text-center d-grid gap-2">
