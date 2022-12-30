@@ -1,3 +1,5 @@
+using FightClub.Core;
+
 namespace FightClub.Server;
 
 public class Program
@@ -8,7 +10,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews().AddNewtonsoftJson();
-        builder.Services.AddSingleton<Mock>();
+        builder.Services.AddSingleton<IFightClubFacade, FightClubMockFacade>();
 
         var app = builder.Build();
 

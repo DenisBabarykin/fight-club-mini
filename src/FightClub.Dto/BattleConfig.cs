@@ -16,13 +16,19 @@ namespace FightClub.Dto
         /// Первая команда.
         /// </summary>
         [JsonRequired]
-        public Team TeamOne { get; set; } = new Team();
+        public TeamConfig TeamOne { get; set; } = new TeamConfig();
 
         /// <summary>
         /// Вторая команда.
         /// </summary>
         [JsonRequired]
-        public Team TeamTwo { get; set; } = new Team();
+        public TeamConfig TeamTwo { get; set; } = new TeamConfig();
+
+        /// <summary>
+        /// Параметры боевого движка.
+        /// </summary>
+        [JsonRequired]
+        public FightEngineParams FightEngineParams { get; set; } = new FightEngineParams();
 
         public BattleConfig()
         {
@@ -31,10 +37,12 @@ namespace FightClub.Dto
 
         /// <param name="teamOne">Первая команда.</param>
         /// <param name="teamTwo">Вторая команда.</param>
-        public BattleConfig(Team teamOne, Team teamTwo)
+        /// <param name="fightEngineParams">Параметры боевого движка.</param>
+        public BattleConfig(TeamConfig teamOne, TeamConfig teamTwo, FightEngineParams fightEngineParams)
         {
             TeamOne = teamOne;
             TeamTwo = teamTwo;
+            FightEngineParams = fightEngineParams;
         }
     }
 }

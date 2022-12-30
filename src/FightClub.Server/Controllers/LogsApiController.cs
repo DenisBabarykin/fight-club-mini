@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FightClub.Core;
 using FightClub.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +10,19 @@ namespace FightClub.Server.Controllers;
 [ApiController]
 public class LogsApiController : ControllerBase
 {
-    private readonly Mock _mock;
+    private readonly IFightClubFacade _fightClubFacade;
+    private readonly ILogger<LogsApiController>? _logger;
 
-    public LogsApiController(Mock mock)
+    public LogsApiController(IFightClubFacade fightClubFacade, ILogger<LogsApiController>? logger)
     {
-        _mock = mock;
+        _fightClubFacade = fightClubFacade;
+        _logger = logger;
     }
 
     [HttpGet("{round:int}")]
-    public IActionResult GetRoundLog([FromRoute][Required] int round)
+    public async Task<IActionResult> GetRoundLog([FromRoute][Required] int round)
     {
-        var roundLog = _mock.GetLogsTestData(round);
+        var roundLog = await _fightClubFacade.GetLogsAsync(round);
         return roundLog != null ? Ok(roundLog) : NotFound();
     }
 }
