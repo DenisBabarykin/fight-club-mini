@@ -33,4 +33,15 @@ public static class DtoExtensions
             player.CurrentHp,
             player.Items.ToList());
     }
+
+    public static Player? GetPlayer(this Battle battle, string playerName)
+    {
+        var player = battle.TeamOne.Players.FirstOrDefault(p => p.Name == playerName);
+        if (player == null)
+        {
+            player = battle.TeamTwo.Players.FirstOrDefault(p => p.Name == playerName);
+        }
+
+        return player;
+    }
 }

@@ -63,12 +63,17 @@ public class BattleManager : IBattleManager
 
     public async Task<PlayerCurrentGlobalState> GetPlayerCurrentGlobalStateAsync(string playerName)
     {
-        //PlayerSkirmishState? playerSkirmishState = null; // TODO проинициализировать нормально
+        PlayerSkirmishState? playerSkirmishState = null; // TODO проинициализировать нормально
+        bool canFight = true; // TODO 
+        bool isWin = false; // TODO
         var battle = await GetBattleCloneThreadSafelyAsync();
+        var player = battle?.GetPlayer(playerName);
 
-        throw new NotImplementedException();
-        //return new PlayerCurrentGlobalState(playerSkirmishState,
-        //    battle);
+        return new PlayerCurrentGlobalState(playerSkirmishState,
+            player != null && canFight,
+            battle != null,
+            player != null && (player.CurrentHp > 0),
+            battle != null && isWin);
     }
 
     private async Task<Battle?> GetBattleCloneThreadSafelyAsync()
