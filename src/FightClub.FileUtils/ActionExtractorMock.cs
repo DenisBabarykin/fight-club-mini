@@ -11,36 +11,28 @@ public class ActionExtractorMock : IActionExtractor
 {
     public Dictionary<BodyParts, List<string>> GetBodyParts()
     {
-        var headActions = new List<string>()
+        return new Dictionary<BodyParts, List<string>>
         {
-            "отрывает ухо",
-            "бреет брови"
+            [BodyParts.Head] = new List<string>()
+            {
+                "отрывает ухо",
+                "бреет брови"
+            },
+            [BodyParts.Body] = new List<string>()
+            {
+                "тыкает в пупок",
+                "мнёт бока"
+            },
+            [BodyParts.Groin] = new List<string>()
+            {
+                "исследует булки",
+                "кусает за жопу"
+            },
+            [BodyParts.Legs] = new List<string>()
+            {
+                "щекотит левую ногу",
+                "сажает на шпагат"
+            }
         };
-
-        var bodyActions = new List<string>()
-        {
-            "тыкает в пупок",
-            "мнёт бока"
-        };
-
-        var groinActions = new List<string>()
-        {
-            "исследует булки",
-            "кусает за жопу"
-        };
-
-        var legsActions = new List<string>()
-        {
-            "щекотит левую ногу",
-            "сажает на шпагат"
-        };
-
-        var dict = new Dictionary<BodyParts, List<string>>();
-        dict[BodyParts.Head] = headActions;
-        dict[BodyParts.Body] = bodyActions;
-        dict[BodyParts.Groin] = groinActions;
-        dict[BodyParts.Legs] = legsActions;
-
-        return dict;
     }
 }
