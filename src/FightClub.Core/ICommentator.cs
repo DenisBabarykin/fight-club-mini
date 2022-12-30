@@ -10,4 +10,6 @@ namespace FightClub.Core;
 public interface ICommentator
 {
     Task<RoundLog?> GetLogsAsync(int round);
+
+    Task ResetAsync();
 }

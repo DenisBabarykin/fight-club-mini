@@ -11,13 +11,15 @@ namespace FightClub.Core;
 public class BattleManager : IBattleManager
 {
     private readonly IFightEngine _fightEngine;
+    private readonly ICommentator _commentator;
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
     private Battle? Battle { get; set; } 
 
-    public BattleManager(IFightEngine fightEngine)
+    public BattleManager(IFightEngine fightEngine, ICommentator commentator)
     {
         _fightEngine = fightEngine;
+        _commentator = commentator;
     }
 
     public  Task<Battle?> GetBattleStateAsync()
@@ -25,9 +27,18 @@ public class BattleManager : IBattleManager
         throw new NotImplementedException();
     }
 
-    public  Task DeleteBattleAsync()
+    public async Task DeleteBattleAsync()
     {
-        throw new NotImplementedException();
+        await _semaphore.WaitAsync();
+        try
+        {
+            Battle = null;
+            await _commentator.ResetAsync();
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     public async Task StartNewBattleAsync(BattleConfig battleConfig)
@@ -37,7 +48,7 @@ public class BattleManager : IBattleManager
         {
             _fightEngine.SetParams(battleConfig.FightEngineParams);
             Battle = InitBattle(battleConfig);
-
+            await _commentator.ResetAsync();
         }
         finally
         {
@@ -55,8 +66,27 @@ public class BattleManager : IBattleManager
         throw new NotImplementedException();
     }
 
-    private static Battle InitBattle(BattleConfig battleConfig)
+    private Battle InitBattle(BattleConfig battleConfig)
     {
-        throw new NotImplementedException();
+        return new Battle(InitTeam(battleConfig.TeamOne), InitTeam(battleConfig.TeamTwo), 1, false);
+    }
+
+    private Team InitTeam(TeamConfig teamConfig)
+    {
+        return new Team(teamConfig.Players.Select(p => InitPlayer(p)).ToList());
+    }
+
+    private Player InitPlayer(PlayerConfig playerConfig)
+    {
+        return new Player(playerConfig.Name,
+            playerConfig.DativeName,
+            playerConfig.AvatarId,
+            playerConfig.Strength,
+            playerConfig.Endurance,
+            playerConfig.Agility,
+            playerConfig.Intuition,
+            _fightEngine.CalcMaxHp(playerConfig.Endurance),
+            _fightEngine.CalcMaxHp(playerConfig.Endurance),
+            playerConfig.Items.ToList());
     }
 }
