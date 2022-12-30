@@ -20,6 +20,20 @@ namespace FightClub.WinFormsCommentator
             lblPlayer4Name.TextAlign = ContentAlignment.MiddleCenter;
             lblPlayer5Name.TextAlign = ContentAlignment.MiddleCenter;
             lblPlayer6Name.TextAlign = ContentAlignment.MiddleCenter;
+
+            lblPlayer1Name.ForeColor = Color.Yellow;
+            lblPlayer2Name.ForeColor = Color.Yellow;
+            lblPlayer3Name.ForeColor = Color.Yellow;
+            lblPlayer4Name.ForeColor = Color.Cyan;
+            lblPlayer5Name.ForeColor = Color.Cyan;
+            lblPlayer6Name.ForeColor = Color.Cyan;
+
+            lblP1hp.TextAlign = ContentAlignment.MiddleCenter;
+            lblP2hp.TextAlign = ContentAlignment.MiddleCenter;
+            lblP3hp.TextAlign = ContentAlignment.MiddleCenter;
+            lblP4hp.TextAlign = ContentAlignment.MiddleCenter;
+            lblP5hp.TextAlign = ContentAlignment.MiddleCenter;
+            lblP6hp.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -67,9 +81,8 @@ namespace FightClub.WinFormsCommentator
             foreach (var skirmishLog in roundLog.SkirmishLogs)
             {
                 rtbLogs.AppendText(BeautifyLog(skirmishLog.PlayerOneAttackText) + "\n");
-                rtbLogs.AppendText(BeautifyLog(skirmishLog.PlayerTwoAttackText) + "\n");
+                rtbLogs.AppendText(BeautifyLog(skirmishLog.PlayerTwoAttackText) + "\n\n");
             }
-
 
             if (battle.IsFinished)
             {
@@ -89,6 +102,90 @@ namespace FightClub.WinFormsCommentator
                     rtbLogs.SelectionColor = Color.Red;
                 }
             }
+
+            int temp_start_pos = start_pos_for_red;
+
+            foreach (var player in battle.TeamOne.Players)
+            {
+                int start_select = -1;
+                int pos = 0;
+                start_pos_for_red = temp_start_pos;
+                do
+                {
+                    start_select = rtbLogs.Find(player.Name, start_pos_for_red + pos, RichTextBoxFinds.WholeWord);
+                    if (start_select > 0)
+                    {
+                        rtbLogs.SelectionStart = start_select;
+                        rtbLogs.SelectionLength = player.Name.Length;
+                        rtbLogs.SelectionColor = Color.Yellow;
+
+                        start_pos_for_red = start_select;
+                        pos = player.Name.Length;
+                    }
+                    
+                } while (start_select > 0);
+
+                start_select = -1;
+                pos = 0;
+                start_pos_for_red = temp_start_pos;
+                do
+                {
+                    start_select = rtbLogs.Find(player.DativeName, start_pos_for_red + pos, RichTextBoxFinds.WholeWord);
+                    if (start_select > 0)
+                    {
+                        rtbLogs.SelectionStart = start_select;
+                        rtbLogs.SelectionLength = player.DativeName.Length;
+                        rtbLogs.SelectionColor = Color.Yellow;
+
+                        start_pos_for_red = start_select;
+                        pos = player.DativeName.Length;
+                    }
+                } while (start_select > 0);
+
+                rtbLogs.DeselectAll();
+            }
+
+            start_pos_for_red = temp_start_pos;
+            foreach (var player in battle.TeamTwo.Players)
+            {
+                int start_select = -1;
+                int pos = 0;
+                start_pos_for_red = temp_start_pos;
+                do
+                {
+                    start_select = rtbLogs.Find(player.Name, start_pos_for_red + pos, RichTextBoxFinds.WholeWord);
+                    if (start_select > 0)
+                    {
+                        rtbLogs.SelectionStart = start_select;
+                        rtbLogs.SelectionLength = player.Name.Length;
+                        rtbLogs.SelectionColor = Color.Cyan;
+
+                        start_pos_for_red = start_select;
+                        pos = player.Name.Length;
+                    }
+
+                } while (start_select > 0);
+
+                start_select = -1;
+                pos = 0;
+                start_pos_for_red = temp_start_pos;
+                do
+                {
+                    start_select = rtbLogs.Find(player.DativeName, start_pos_for_red + pos, RichTextBoxFinds.WholeWord);
+                    if (start_select > 0)
+                    {
+                        rtbLogs.SelectionStart = start_select;
+                        rtbLogs.SelectionLength = player.DativeName.Length;
+                        rtbLogs.SelectionColor = Color.Cyan;
+
+                        start_pos_for_red = start_select;
+                        pos = player.DativeName.Length;
+                    }
+                } while (start_select > 0);
+
+                rtbLogs.DeselectAll();
+            }
+
             rtbLogs.DeselectAll();
         }
 
@@ -132,7 +229,7 @@ namespace FightClub.WinFormsCommentator
             initiateItems(num, player);
             if (num == 0)
             {
-                pbPlayer1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
+                //pbPlayer1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
 
                 lblPlayer1Name.Text = player.Name;
                 pbP1hp.Maximum = player.MaxHp;
@@ -155,7 +252,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 1)
             {
-                pbPlayer2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
+                //pbPlayer2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
 
                 lblPlayer2Name.Text = player.Name;
                 pbP2hp.Maximum = player.MaxHp;
@@ -178,7 +275,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 2)
             {
-                pbPlayer3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
+                //pbPlayer3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
 
                 lblPlayer3Name.Text = player.Name;
                 pbP3hp.Maximum = player.MaxHp;
@@ -202,7 +299,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 3)
             {
-                pbPlayer4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
+                //pbPlayer4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
 
                 lblPlayer4Name.Text = player.Name;
                 pbP4hp.Maximum = player.MaxHp;
@@ -225,7 +322,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 4)
             {
-                pbPlayer5.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
+                //pbPlayer5.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
 
                 lblPlayer5Name.Text = player.Name;
                 pbP5hp.Maximum = player.MaxHp;
@@ -248,7 +345,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 5)
             {
-                pbPlayer6.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
+                //pbPlayer6.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
 
                 lblPlayer6Name.Text = player.Name;
                 pbP6hp.Maximum = player.MaxHp;
@@ -327,6 +424,7 @@ namespace FightClub.WinFormsCommentator
 
         private void initiateItems(int num, Player player)
         {
+            /*
             if (num == 0)
                 foreach (var item in player.Items)
                 {
@@ -447,6 +545,7 @@ namespace FightClub.WinFormsCommentator
                         pbPlayer6item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
                     }
                 }
+            */
         }
         private async void button1_Click(object sender, EventArgs e)
         {

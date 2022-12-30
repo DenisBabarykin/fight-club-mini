@@ -135,7 +135,7 @@
             this.rtbLogs.BackColor = System.Drawing.Color.Black;
             this.rtbLogs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbLogs.DetectUrls = false;
-            this.rtbLogs.Font = new System.Drawing.Font("Showcard Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rtbLogs.Font = new System.Drawing.Font("Microsoft YaHei UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.rtbLogs.ForeColor = System.Drawing.Color.White;
             this.rtbLogs.Location = new System.Drawing.Point(538, 45);
             this.rtbLogs.Name = "rtbLogs";
@@ -265,15 +265,14 @@
             // 
             // lblP1hp
             // 
-            this.lblP1hp.AutoSize = true;
             this.lblP1hp.BackColor = System.Drawing.Color.Transparent;
             this.lblP1hp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblP1hp.ForeColor = System.Drawing.Color.White;
-            this.lblP1hp.Location = new System.Drawing.Point(259, 423);
+            this.lblP1hp.Location = new System.Drawing.Point(259, 419);
             this.lblP1hp.Name = "lblP1hp";
-            this.lblP1hp.Size = new System.Drawing.Size(80, 21);
+            this.lblP1hp.Size = new System.Drawing.Size(92, 29);
             this.lblP1hp.TabIndex = 15;
-            this.lblP1hp.Text = "800/1000";
+            this.lblP1hp.Text = "1000/1000";
             // 
             // lblPlayer2Name
             // 
@@ -341,13 +340,12 @@
             // 
             // lblP2hp
             // 
-            this.lblP2hp.AutoSize = true;
             this.lblP2hp.BackColor = System.Drawing.Color.Transparent;
             this.lblP2hp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblP2hp.ForeColor = System.Drawing.Color.White;
-            this.lblP2hp.Location = new System.Drawing.Point(259, 869);
+            this.lblP2hp.Location = new System.Drawing.Point(259, 867);
             this.lblP2hp.Name = "lblP2hp";
-            this.lblP2hp.Size = new System.Drawing.Size(80, 21);
+            this.lblP2hp.Size = new System.Drawing.Size(92, 29);
             this.lblP2hp.TabIndex = 22;
             this.lblP2hp.Text = "600/1000";
             // 
@@ -373,13 +371,12 @@
             // 
             // lblP3hp
             // 
-            this.lblP3hp.AutoSize = true;
             this.lblP3hp.BackColor = System.Drawing.Color.Transparent;
             this.lblP3hp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblP3hp.ForeColor = System.Drawing.Color.White;
-            this.lblP3hp.Location = new System.Drawing.Point(259, 1320);
+            this.lblP3hp.Location = new System.Drawing.Point(259, 1316);
             this.lblP3hp.Name = "lblP3hp";
-            this.lblP3hp.Size = new System.Drawing.Size(80, 21);
+            this.lblP3hp.Size = new System.Drawing.Size(92, 29);
             this.lblP3hp.TabIndex = 25;
             this.lblP3hp.Text = "600/1000";
             // 
@@ -591,37 +588,34 @@
             // 
             // lblP4hp
             // 
-            this.lblP4hp.AutoSize = true;
             this.lblP4hp.BackColor = System.Drawing.Color.Transparent;
             this.lblP4hp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblP4hp.ForeColor = System.Drawing.Color.White;
-            this.lblP4hp.Location = new System.Drawing.Point(2201, 423);
+            this.lblP4hp.Location = new System.Drawing.Point(2187, 420);
             this.lblP4hp.Name = "lblP4hp";
-            this.lblP4hp.Size = new System.Drawing.Size(80, 21);
+            this.lblP4hp.Size = new System.Drawing.Size(92, 29);
             this.lblP4hp.TabIndex = 45;
             this.lblP4hp.Text = "800/1000";
             // 
             // lblP5hp
             // 
-            this.lblP5hp.AutoSize = true;
             this.lblP5hp.BackColor = System.Drawing.Color.Transparent;
             this.lblP5hp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblP5hp.ForeColor = System.Drawing.Color.White;
-            this.lblP5hp.Location = new System.Drawing.Point(2201, 874);
+            this.lblP5hp.Location = new System.Drawing.Point(2187, 869);
             this.lblP5hp.Name = "lblP5hp";
-            this.lblP5hp.Size = new System.Drawing.Size(80, 21);
+            this.lblP5hp.Size = new System.Drawing.Size(92, 29);
             this.lblP5hp.TabIndex = 46;
             this.lblP5hp.Text = "800/1000";
             // 
             // lblP6hp
             // 
-            this.lblP6hp.AutoSize = true;
             this.lblP6hp.BackColor = System.Drawing.Color.Transparent;
             this.lblP6hp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblP6hp.ForeColor = System.Drawing.Color.White;
-            this.lblP6hp.Location = new System.Drawing.Point(2201, 1320);
+            this.lblP6hp.Location = new System.Drawing.Point(2187, 1316);
             this.lblP6hp.Name = "lblP6hp";
-            this.lblP6hp.Size = new System.Drawing.Size(80, 21);
+            this.lblP6hp.Size = new System.Drawing.Size(92, 29);
             this.lblP6hp.TabIndex = 47;
             this.lblP6hp.Text = "800/1000";
             // 
