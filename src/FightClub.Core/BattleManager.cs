@@ -14,7 +14,7 @@ public class BattleManager : IBattleManager
     private readonly ICommentator _commentator;
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
-    private Battle? Battle { get; set; } 
+    private Battle? _battle;
 
     public BattleManager(IFightEngine fightEngine, ICommentator commentator)
     {
@@ -22,9 +22,9 @@ public class BattleManager : IBattleManager
         _commentator = commentator;
     }
 
-    public  Task<Battle?> GetBattleStateAsync()
+    public async Task<Battle?> GetBattleStateAsync()
     {
-        throw new NotImplementedException();
+        return await GetBattleCloneThreadSafelyAsync();
     }
 
     public async Task DeleteBattleAsync()
@@ -32,7 +32,7 @@ public class BattleManager : IBattleManager
         await _semaphore.WaitAsync();
         try
         {
-            Battle = null;
+            _battle = null;
             await _commentator.ResetAsync();
         }
         finally
@@ -47,7 +47,7 @@ public class BattleManager : IBattleManager
         try
         {
             _fightEngine.SetParams(battleConfig.FightEngineParams);
-            Battle = InitBattle(battleConfig);
+            _battle = InitBattle(battleConfig);
             await _commentator.ResetAsync();
         }
         finally
@@ -61,9 +61,27 @@ public class BattleManager : IBattleManager
         throw new NotImplementedException();
     }
 
-    public  Task<PlayerCurrentGlobalState> GetPlayerCurrentGlobalStateAsync(string playerName)
+    public async Task<PlayerCurrentGlobalState> GetPlayerCurrentGlobalStateAsync(string playerName)
     {
+        //PlayerSkirmishState? playerSkirmishState = null; // TODO проинициализировать нормально
+        var battle = await GetBattleCloneThreadSafelyAsync();
+
         throw new NotImplementedException();
+        //return new PlayerCurrentGlobalState(playerSkirmishState,
+        //    battle);
+    }
+
+    private async Task<Battle?> GetBattleCloneThreadSafelyAsync()
+    {
+        await _semaphore.WaitAsync();
+        try
+        {
+            return _battle?.Clone();
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     private Battle InitBattle(BattleConfig battleConfig)
