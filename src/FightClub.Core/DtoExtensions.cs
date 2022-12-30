@@ -44,4 +44,9 @@ public static class DtoExtensions
 
         return player;
     }
+
+    public static bool IsAlive(this Player player)
+    {
+        return player.CurrentHp > 0;
+    }
 }

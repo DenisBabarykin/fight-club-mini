@@ -8,14 +8,6 @@ namespace FightClub.FileUtils;
 
 public class JokeExtractor : IJokeExtractor
 {
-    private string _pathToJokeFile;
-
-    public JokeExtractor(string pathToJokeFile)
-    {
-        _pathToJokeFile = pathToJokeFile ?? throw new ArgumentNullException(nameof(pathToJokeFile));
-    }
-
-
     public List<string> GetJokes()
     {
         return new List<string>()

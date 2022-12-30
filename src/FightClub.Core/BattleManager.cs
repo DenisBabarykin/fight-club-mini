@@ -13,6 +13,7 @@ public class BattleManager : IBattleManager
     private readonly IFightEngine _fightEngine;
     private readonly ICommentator _commentator;
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
+    private readonly Dictionary<Player, List<Player>> _roundUpcomingDecisions = new Dictionary<Player, List<Player>>();
 
     private Battle? _battle;
 
@@ -49,6 +50,7 @@ public class BattleManager : IBattleManager
             _fightEngine.SetParams(battleConfig.FightEngineParams);
             _battle = InitBattle(battleConfig);
             await _commentator.ResetAsync();
+            InitRound();
         }
         finally
         {
@@ -56,7 +58,7 @@ public class BattleManager : IBattleManager
         }
     }
 
-    public  Task MakeSkirmishDecisionAsync(SkirmishDecision skirmishDecision)
+    public Task MakeSkirmishDecisionAsync(SkirmishDecision skirmishDecision)
     {
         throw new NotImplementedException();
     }
@@ -74,6 +76,33 @@ public class BattleManager : IBattleManager
             battle != null,
             player != null && (player.CurrentHp > 0),
             battle != null && isWin);
+    }
+
+    private void InitRound()
+    {
+        var _ = _battle ?? throw new NullReferenceException("Вызвана инициализация раунда когда битва не начата.");
+        if (_battle.IsFinished)
+            throw new Exception("Попытка проинициализировать раунд при завершенной игре!");
+
+        _roundUpcomingDecisions.Clear();
+        foreach (var player in _battle.TeamOne.Players.Concat(_battle.TeamTwo.Players).ToList())
+        {
+            _roundUpcomingDecisions[player] = new List<Player>();
+        }
+
+        foreach (var playerFromTeamOne in _battle.TeamOne.Players)
+        {
+            foreach (var playerFromTeamTwo in _battle.TeamTwo.Players)
+            {
+                if (playerFromTeamOne.IsAlive() && playerFromTeamTwo.IsAlive())
+                {
+                    _roundUpcomingDecisions[playerFromTeamOne].Add(playerFromTeamTwo);
+                    _roundUpcomingDecisions[playerFromTeamTwo].Add(playerFromTeamOne);
+                }
+            }
+        }
+
+        _battle.Round++;
     }
 
     private async Task<Battle?> GetBattleCloneThreadSafelyAsync()
