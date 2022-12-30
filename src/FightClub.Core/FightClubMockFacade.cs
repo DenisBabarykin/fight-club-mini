@@ -14,15 +14,15 @@ public class FightClubMockFacade : IFightClubFacade
     private Battle? BattleState { get; set; } = new Battle(
         new Team(new List<Player>()
         {
-            new Player("Ден", "Дену", 1, 15, 12, 5, 5, 150, 121, new List<int>() { 1, 2, 3, 4, 5}),
-            new Player("Вика", "Вике", 2, 5, 5, 20, 5, 50, 45, new List<int>() { 6, 7, 8, 9, 10 }),
-            new Player("Макс", "Максу", 3, 6, 7, 6, 16, 60, 0, Enumerable.Range(11, 5).ToList())
+            new Player("Ден", "Дену", 1, 15, 12, 5, 5, 150, 121, new List<int>() { 11, 21, 31, 41}),
+            new Player("Вика", "Вике", 2, 5, 5, 20, 5, 50, 45, new List<int>() { 12, 22, 32, 42 }),
+            new Player("Макс", "Максу", 3, 6, 7, 6, 16, 60, 0, new List<int>())
         }),
         new Team(new List<Player>()
         {
-            new Player("Света", "Свете", 4, 6, 7, 6, 16, 60, 15, Enumerable.Range(16, 5).ToList()),
-            new Player("Маша", "Маше", 5, 15, 12, 5, 5, 150, 121, Enumerable.Range(21, 5).ToList()),
-            new Player("Вова", "Вове", 6, 5, 5, 20, 5, 50, 45, Enumerable.Range(26, 5).ToList())
+            new Player("Света", "Свете", 4, 6, 7, 6, 16, 60, 15, new List<int>() { 10, 23, 30, 40 }),
+            new Player("Маша", "Маше", 5, 15, 12, 5, 5, 150, 121, new List<int>()),
+            new Player("Вова", "Вове", 6, 5, 5, 20, 5, 50, 45, new List<int>() { 11, 22, 33 })
         }),
         1,
         false
@@ -41,7 +41,7 @@ public class FightClubMockFacade : IFightClubFacade
                 new SkirmishLog("Ден",
                     "Вова",
                     "Ден подпаляет ресницы Вове, сильно за это извиняясь. Нанесенный урон: 12. Оставшееся здоровье: 15.",
-                    "Вова загоняет якорь в зад Дену, уверяя что так было нужно. Но Ден уворачивается! Нанесенный урон: 9. Оставшееся здоровье: 121."),
+                    "Вова загоняет якорь в зад Дену, уверяя что так было нужно. Ден пытался увернуться, но тщетно. Нанесенный урон: 9. Оставшееся здоровье: 121."),
 
                 new SkirmishLog("Вика",
                     "Света",
@@ -75,6 +75,10 @@ public class FightClubMockFacade : IFightClubFacade
         if (BattleState != null && BattleState.Round > 20)
         {
             BattleState.IsFinished = true;
+        }
+        else if (BattleState != null)
+        {
+            BattleState.Round++;
         }
 
         return Task.FromResult(BattleState);

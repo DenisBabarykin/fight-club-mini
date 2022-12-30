@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FightClub.Dto;
 
@@ -9,6 +10,16 @@ namespace FightClub.Core;
 
 public class BattleManager : IBattleManager
 {
+    private readonly IFightEngine _fightEngine;
+    private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
+
+    private Battle? Battle { get; set; } 
+
+    public BattleManager(IFightEngine fightEngine)
+    {
+        _fightEngine = fightEngine;
+    }
+
     public  Task<Battle?> GetBattleStateAsync()
     {
         throw new NotImplementedException();
@@ -19,9 +30,19 @@ public class BattleManager : IBattleManager
         throw new NotImplementedException();
     }
 
-    public  Task StartNewBattleAsync(BattleConfig battleConfig)
+    public async Task StartNewBattleAsync(BattleConfig battleConfig)
     {
-        throw new NotImplementedException();
+        await _semaphore.WaitAsync();
+        try
+        {
+            _fightEngine.SetParams(battleConfig.FightEngineParams);
+            Battle = InitBattle(battleConfig);
+
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     public  Task MakeSkirmishDecisionAsync(SkirmishDecision skirmishDecision)
@@ -30,6 +51,11 @@ public class BattleManager : IBattleManager
     }
 
     public  Task<PlayerCurrentGlobalState> GetPlayerCurrentGlobalStateAsync(string playerName)
+    {
+        throw new NotImplementedException();
+    }
+
+    private static Battle InitBattle(BattleConfig battleConfig)
     {
         throw new NotImplementedException();
     }

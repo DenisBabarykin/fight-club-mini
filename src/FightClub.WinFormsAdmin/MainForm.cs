@@ -51,15 +51,15 @@ public partial class MainForm : Form
         var battleConfig = new BattleConfig(
             new TeamConfig(new List<PlayerConfig>()
             {
-                new PlayerConfig("Ден", "Дену", 1, 15, 12, 5, 5, new List<int>() { 1, 2}),
-                new PlayerConfig("Вика", "Вике", 2, 5, 5, 20, 5, new List<int>() { 3, 4 }),
-                new PlayerConfig("Макс", "Максу", 3, 6, 7, 6, 16, new List<int>() { 5, 6 })
+                new PlayerConfig("Ден", "Дену", 1, 15, 12, 5, 5, new List<int>() { 11, 21, 31, 41 }),
+                new PlayerConfig("Вика", "Вике", 2, 5, 5, 20, 5, new List<int>() { 12, 22, 32, 42 }),
+                new PlayerConfig("Макс", "Максу", 3, 6, 7, 6, 16, new List<int>())
             }),
             new TeamConfig(new List<PlayerConfig>()
             {
-                new PlayerConfig("Света", "Свете", 4, 6, 7, 6, 16, new List<int>() { 7, 8 }),
-                new PlayerConfig("Маша", "Маше", 5, 15, 12, 5, 5, new List<int>() { 9, 10 }),
-                new PlayerConfig("Вова", "Вове", 6, 5, 5, 20, 5, new List<int>() { 11, 12 })
+                new PlayerConfig("Света", "Свете", 4, 6, 7, 6, 16, new List<int>() { 10, 23, 30, 40 }),
+                new PlayerConfig("Маша", "Маше", 5, 15, 12, 5, 5, new List<int>()),
+                new PlayerConfig("Вова", "Вове", 6, 5, 5, 20, 5, new List<int>() { 11, 22, 33 })
             }),
             new FightEngineParams()
         );
