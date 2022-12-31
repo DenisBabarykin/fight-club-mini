@@ -7,18 +7,18 @@ using FightClub.Dto;
 
 namespace FightClub.Core;
 
-public class Attack
+public class Defense
 {
     public Player Attacker { get; }
 
     public Player Defender { get; }
 
-    public BodyParts AttackerHit { get; }
+    public BodyParts DefenderBlock { get; }
 
-    public Attack(Player attacker, Player defender, BodyParts attackerHit)
+    public Defense(Player attacker, Player defender, BodyParts defenderBlock)
     {
         Attacker = attacker;
         Defender = defender;
-        AttackerHit = attackerHit;
+        DefenderBlock = defenderBlock;
     }
 }

@@ -16,6 +16,7 @@ public class BattleManager : IBattleManager
 
     private readonly Dictionary<Player, List<Player>> _roundUpcomingDecisions = new Dictionary<Player, List<Player>>();
     private readonly List<Attack> _roundAttacks = new List<Attack>();
+    private readonly List<Defense> _roundDefenses = new List<Defense>();
 
     private Battle? _battle;
 
@@ -37,6 +38,7 @@ public class BattleManager : IBattleManager
         {
             _battle = null;
             _roundAttacks.Clear();
+            _roundDefenses.Clear();
             _roundUpcomingDecisions.Clear();
             await _commentator.ResetAsync();
         }
@@ -74,7 +76,23 @@ public class BattleManager : IBattleManager
                 throw new Exception("В бою не удалось найти игрока или противника с заданным именем.");
 
             _roundUpcomingDecisions[player].Remove(enemy);
-            
+            _roundAttacks.Add(new Attack(player, enemy, StringToBodyPartConverter.Convert(skirmishDecision.Hit)));
+            _roundDefenses.Add(new Defense(enemy, player, StringToBodyPartConverter.Convert(skirmishDecision.Block)));
+
+            // Если все приняли свои решения, то пора завершать раунд и обсчитывать результаты
+            if (!_roundUpcomingDecisions.ToList().Any(decision => decision.Value.Any()))
+            {
+                _fightEngine.ProcessRound(_roundAttacks, _roundDefenses);
+            }
+
+            if (_battle.TeamOne.IsAlive() && _battle.TeamTwo.IsAlive())
+            {
+                InitRound();
+            }
+            else
+            {
+                _battle.IsFinished = true;
+            }
         }
         finally
         {
@@ -130,6 +148,7 @@ public class BattleManager : IBattleManager
             throw new Exception("Попытка проинициализировать раунд при завершенной игре!");
 
         _roundAttacks.Clear();
+        _roundDefenses.Clear();
         _roundUpcomingDecisions.Clear();
         foreach (var player in _battle.TeamOne.Players.Concat(_battle.TeamTwo.Players).ToList())
         {
