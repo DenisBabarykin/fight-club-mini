@@ -384,7 +384,7 @@ namespace FightClub.WinFormsCommentator
         {
             if (num == 0)
             {
-                lblPlayer1Name.Text = player.Name;
+                pbP1hp.SetState(1);
                 pbP1hp.Maximum = player.MaxHp;
                 pbP1hp.Value = player.CurrentHp;
                 lblP1hp.Text = player.CurrentHp + "/" + player.MaxHp;
@@ -392,7 +392,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 1)
             {
-                lblPlayer2Name.Text = player.Name;
+                pbP2hp.SetState(1);
                 pbP2hp.Maximum = player.MaxHp;
                 pbP2hp.Value = player.CurrentHp;
                 lblP2hp.Text = player.CurrentHp + "/" + player.MaxHp;
@@ -400,7 +400,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 2)
             {
-                lblPlayer3Name.Text = player.Name;
+                pbP3hp.SetState(1);
                 pbP3hp.Maximum = player.MaxHp;
                 pbP3hp.Value = player.CurrentHp;
                 lblP3hp.Text = player.CurrentHp + "/" + player.MaxHp;
@@ -409,7 +409,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 3)
             {
-                lblPlayer4Name.Text = player.Name;
+                pbP4hp.SetState(1);
                 pbP4hp.Maximum = player.MaxHp;
                 pbP4hp.Value = player.CurrentHp;
                 lblP4hp.Text = player.CurrentHp + "/" + player.MaxHp;
@@ -418,7 +418,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 4)
             {
-                lblPlayer5Name.Text = player.Name;
+                pbP5hp.SetState(1);
                 pbP5hp.Maximum = player.MaxHp;
                 pbP5hp.Value = player.CurrentHp;
                 lblP5hp.Text = player.CurrentHp + "/" + player.MaxHp;
@@ -427,7 +427,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 5)
             {
-                lblPlayer6Name.Text = player.Name;
+                pbP6hp.SetState(1);
                 pbP6hp.Maximum = player.MaxHp;
                 pbP6hp.Value = player.CurrentHp;
                 lblP6hp.Text = player.CurrentHp + "/" + player.MaxHp;
