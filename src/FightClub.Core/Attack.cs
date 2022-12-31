@@ -17,11 +17,10 @@ public class Attack
 
     public BodyParts DefenderBlock { get; set; }
 
-    public Attack(Player attacker, Player defender, BodyParts attackerHit, BodyParts defenderBlock)
+    public Attack(Player attacker, Player defender, BodyParts attackerHit)
     {
         Attacker = attacker;
         Defender = defender;
         AttackerHit = attackerHit;
-        DefenderBlock = defenderBlock;
     }
 }
