@@ -79,7 +79,6 @@
             this.lblPlayer4Name = new System.Windows.Forms.Label();
             this.lblPlayer5Name = new System.Windows.Forms.Label();
             this.lblPlayer6Name = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.rtbP1stats = new System.Windows.Forms.RichTextBox();
             this.rtbP2stats = new System.Windows.Forms.RichTextBox();
             this.rtbP3stats = new System.Windows.Forms.RichTextBox();
@@ -650,16 +649,6 @@
             this.lblPlayer6Name.TabIndex = 50;
             this.lblPlayer6Name.Text = "Имя шестого  игрока";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 1366);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 51;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // rtbP1stats
             // 
             this.rtbP1stats.BackColor = System.Drawing.Color.Black;
@@ -757,7 +746,6 @@
             this.Controls.Add(this.rtbP3stats);
             this.Controls.Add(this.rtbP2stats);
             this.Controls.Add(this.rtbP1stats);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblPlayer6Name);
             this.Controls.Add(this.lblPlayer5Name);
             this.Controls.Add(this.lblPlayer4Name);
@@ -898,7 +886,6 @@
         private Label lblPlayer4Name;
         private Label lblPlayer5Name;
         private Label lblPlayer6Name;
-        private Button button1;
         private RichTextBox rtbP1stats;
         private RichTextBox rtbP2stats;
         private RichTextBox rtbP3stats;

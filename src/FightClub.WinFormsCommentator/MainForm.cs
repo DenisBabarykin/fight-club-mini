@@ -49,26 +49,15 @@ namespace FightClub.WinFormsCommentator
         {
             while (true)
             {
-                ResetAll();
+                
                 Battle battle = await _fightClubHttpClient.GetBattleAsync();
                 if (battle != null && !battle.IsFinished)
                 {
                     await ProcessGameAsync(battle);
                 }
                 
-                if (battle != null && battle.IsFinished)
-                {
-                    break;
-                }
-
                 await Task.Delay(2000);
             }
-        }
-
-        private void ResetAll()
-        {
-            lblRound.Text = "Раунд:";
-            rtbLogs.Clear();
         }
 
         private void ProcessNewRound(Battle battle, RoundLog roundLog)
