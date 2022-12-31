@@ -233,7 +233,7 @@ namespace FightClub.WinFormsCommentator
                     finished = currentBattle.IsFinished;
                     lastProcessedRound++;
                 }
-                await Task.Delay(5000); // потом надо будет уменьшить до 2000 мс 
+                await Task.Delay(2000); // потом надо будет уменьшить до 2000 мс 
             }
         }
 
@@ -572,7 +572,7 @@ namespace FightClub.WinFormsCommentator
             int index_of_dmg = 0;
             string formatted_string = "";
             
-            index_of_dmg = text.IndexOf("Ќанесенный урон");
+            index_of_dmg = text.IndexOf("Ќанесено урона");
             formatted_string = text.Insert(index_of_dmg, "\n");
 
             return formatted_string;
