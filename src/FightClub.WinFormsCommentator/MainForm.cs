@@ -55,7 +55,8 @@ namespace FightClub.WinFormsCommentator
                 {
                     await ProcessGameAsync(battle);
                 }
-                else if (battle != null && battle.IsFinished)
+                
+                if (battle != null && battle.IsFinished)
                 {
                     break;
                 }
