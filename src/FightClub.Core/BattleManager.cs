@@ -13,7 +13,9 @@ public class BattleManager : IBattleManager
     private readonly IFightEngine _fightEngine;
     private readonly ICommentator _commentator;
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
+
     private readonly Dictionary<Player, List<Player>> _roundUpcomingDecisions = new Dictionary<Player, List<Player>>();
+    private readonly List<Attack> _roundAttacks = new List<Attack>();
 
     private Battle? _battle;
 
@@ -34,6 +36,8 @@ public class BattleManager : IBattleManager
         try
         {
             _battle = null;
+            _roundAttacks.Clear();
+            _roundUpcomingDecisions.Clear();
             await _commentator.ResetAsync();
         }
         finally
@@ -44,6 +48,7 @@ public class BattleManager : IBattleManager
 
     public async Task StartNewBattleAsync(BattleConfig battleConfig)
     {
+        await DeleteBattleAsync();
         await _semaphore.WaitAsync();
         try
         {
@@ -58,9 +63,23 @@ public class BattleManager : IBattleManager
         }
     }
 
-    public Task MakeSkirmishDecisionAsync(SkirmishDecision skirmishDecision)
+    public async Task MakeSkirmishDecisionAsync(SkirmishDecision skirmishDecision)
     {
-        throw new NotImplementedException();
+        await _semaphore.WaitAsync();
+        try
+        {
+            var player = _battle?.GetPlayer(skirmishDecision.PlayerName);
+            var enemy = _battle?.GetPlayer(skirmishDecision.EnemyName);
+            if (_battle == null || player == null || enemy == null)
+                throw new Exception("В бою не удалось найти игрока или противника с заданным именем.");
+
+            _roundUpcomingDecisions[player].Remove(enemy);
+            
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     public async Task<PlayerCurrentGlobalState> GetPlayerCurrentGlobalStateAsync(string playerName)
@@ -95,7 +114,7 @@ public class BattleManager : IBattleManager
                     player.MaxHp,
                     player.CurrentHp,
                     enemyPlayer.MaxHp,
-                    enemyPlayer.CurrentHp), 
+                    enemyPlayer.CurrentHp),
                 PlayerBattleState.Fighting);
         }
         finally
@@ -110,6 +129,7 @@ public class BattleManager : IBattleManager
         if (_battle.IsFinished)
             throw new Exception("Попытка проинициализировать раунд при завершенной игре!");
 
+        _roundAttacks.Clear();
         _roundUpcomingDecisions.Clear();
         foreach (var player in _battle.TeamOne.Players.Concat(_battle.TeamTwo.Players).ToList())
         {
