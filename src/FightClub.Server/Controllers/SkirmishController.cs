@@ -21,10 +21,7 @@ public class SkirmishController : Controller
     {
         var state = await _fightClubFacade.GetPlayerCurrentGlobalStateAsync(playerName);
 
-        ViewBag.CanFight = state.CanFight;
-        ViewBag.GameStarted = state.GameStarted;
-        ViewBag.IsAlive = state.IsAlive;
-        ViewBag.IsWin = state.IsWin;
+        ViewBag.PlayerBattleState = state.PlayerBattleState;
         ViewBag.PlayerName = playerName;
 
         if (state.PlayerSkirmishState != null)

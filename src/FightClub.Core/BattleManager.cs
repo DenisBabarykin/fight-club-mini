@@ -65,17 +65,43 @@ public class BattleManager : IBattleManager
 
     public async Task<PlayerCurrentGlobalState> GetPlayerCurrentGlobalStateAsync(string playerName)
     {
-        PlayerSkirmishState? playerSkirmishState = null; // TODO проинициализировать нормально
-        bool canFight = true; // TODO 
-        bool isWin = false; // TODO
-        var battle = await GetBattleCloneThreadSafelyAsync();
-        var player = battle?.GetPlayer(playerName);
+        await _semaphore.WaitAsync();
+        try
+        {
+            var player = _battle?.GetPlayer(playerName);
+            if (_battle == null || player == null)
+                return new PlayerCurrentGlobalState(null, PlayerBattleState.GameNotStarted);
 
-        return new PlayerCurrentGlobalState(playerSkirmishState,
-            player != null && canFight,
-            battle != null,
-            player != null && (player.CurrentHp > 0),
-            battle != null && isWin);
+            Team team = _battle.GetPlayerTeam(player);
+
+            if (_battle.IsFinished && team.IsAlive())
+                return new PlayerCurrentGlobalState(null, PlayerBattleState.Win);
+
+            if (_battle.IsFinished && !_battle.TeamOne.IsAlive() && !_battle.TeamTwo.IsAlive())
+                return new PlayerCurrentGlobalState(null, PlayerBattleState.Draw);
+
+            if (_battle.IsFinished)
+                return new PlayerCurrentGlobalState(null, PlayerBattleState.Lose);
+
+            if (!player.IsAlive())
+                return new PlayerCurrentGlobalState(null, PlayerBattleState.Takedown);
+
+            if (!_roundUpcomingDecisions[player].Any())
+                return new PlayerCurrentGlobalState(null, PlayerBattleState.WaitingForNewRound);
+
+            Player enemyPlayer = _roundUpcomingDecisions[player].First();
+
+            return new PlayerCurrentGlobalState(new PlayerSkirmishState(enemyPlayer.Name,
+                    player.MaxHp,
+                    player.CurrentHp,
+                    enemyPlayer.MaxHp,
+                    enemyPlayer.CurrentHp), 
+                PlayerBattleState.Fighting);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     private void InitRound()

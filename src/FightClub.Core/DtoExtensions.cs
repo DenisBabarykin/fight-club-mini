@@ -45,8 +45,18 @@ public static class DtoExtensions
         return player;
     }
 
-    public static bool IsAlive(this Player player)
+    public static bool IsAlive(this Player player) => player.CurrentHp > 0;
+
+    public static bool IsAlive(this Team team) => team.Players.Any(p => p.IsAlive());
+
+    public static Team GetPlayerTeam(this Battle battle, Player player)
     {
-        return player.CurrentHp > 0;
+        var team = battle.TeamOne;
+        if (battle.TeamTwo.Players.Contains(player))
+        {
+            team = battle.TeamTwo;
+        }
+
+        return team;
     }
 }

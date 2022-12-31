@@ -134,10 +134,6 @@ public class FightClubMockFacade : IFightClubFacade
             state = new PlayerSkirmishState("Макс", 1000, 29, 750, 600);
         }
 
-        return Task.FromResult(new PlayerCurrentGlobalState(state,
-            true,
-            BattleState != null,
-            true,
-            false));
+        return Task.FromResult(new PlayerCurrentGlobalState(state, PlayerBattleState.Fighting));
     }
 }
