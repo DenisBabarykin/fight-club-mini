@@ -37,7 +37,6 @@ namespace FightClub.WinFormsCommentator
             lblP6hp.TextAlign = ContentAlignment.MiddleCenter;
 
             string curDir = Environment.CurrentDirectory.ToString();
-            MessageBox.Show(curDir);
             string[] partOfDir = curDir.Split('\\');
             for (int i = 0; i < partOfDir.Length-3; i++)
             {
