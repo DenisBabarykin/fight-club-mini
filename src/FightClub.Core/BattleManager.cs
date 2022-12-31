@@ -185,7 +185,7 @@ public class BattleManager : IBattleManager
 
     private Battle InitBattle(BattleConfig battleConfig)
     {
-        return new Battle(InitTeam(battleConfig.TeamOne), InitTeam(battleConfig.TeamTwo), 1, false);
+        return new Battle(InitTeam(battleConfig.TeamOne), InitTeam(battleConfig.TeamTwo), -1, false);
     }
 
     private Team InitTeam(TeamConfig teamConfig)
