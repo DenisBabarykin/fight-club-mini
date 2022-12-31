@@ -13,5 +13,5 @@ public interface IFightEngine
 
     public int CalcMaxHp(int endurancePoints);
 
-    public void ProcessRound(List<Attack> attacks, List<Defense> defenses);
+    public List<SkirmishResult> ProcessRound(List<PlayerAttack> attacks, List<PlayerDefense> defenses);
 }
