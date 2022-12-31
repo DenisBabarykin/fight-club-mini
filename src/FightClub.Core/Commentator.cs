@@ -47,29 +47,29 @@ public class Commentator : ICommentator
             {
                 string eventOne = "";
                 if (skirmishResult.PlayerTwoEvent == EventType.Block)
-                    eventOne = $" Но {skirmishResult.PlayerTwo.Name} заблокировал удар!";
+                    eventOne = $" Но {skirmishResult.PlayerTwo.Name} блокирует!";
 
                 if (skirmishResult.PlayerTwoEvent == EventType.Dodge)
-                    eventOne = $" Но {skirmishResult.PlayerTwo.Name} увернулся!";
+                    eventOne = $" Но {skirmishResult.PlayerTwo.Name} уворачивается!";
 
                 if (skirmishResult.PlayerTwoEvent == EventType.CounteredDodge)
-                    eventOne = $"{skirmishResult.PlayerTwo.Name} пытался увернуться, но {skirmishResult.PlayerOne.Name} предугадал!";
+                    eventOne = $" {skirmishResult.PlayerTwo.Name} пытается увернуться, но {skirmishResult.PlayerOne.Name} предугадывает!";
 
 
                 string eventTwo = "";
                 if (skirmishResult.PlayerOneEvent == EventType.Block)
-                    eventTwo = $" Но {skirmishResult.PlayerOne.Name} заблокировал его удар!";
+                    eventTwo = $" Но {skirmishResult.PlayerOne.Name} блокирует!";
 
                 if (skirmishResult.PlayerOneEvent == EventType.Dodge)
-                    eventTwo = $" Но {skirmishResult.PlayerOne.Name} увернулся!";
+                    eventTwo = $" Но {skirmishResult.PlayerOne.Name} уворачивается!";
 
                 if (skirmishResult.PlayerOneEvent == EventType.CounteredDodge)
-                    eventTwo = $" {skirmishResult.PlayerOne.Name} пытался увернуться, но {skirmishResult.PlayerTwo.Name} предугадал!";
+                    eventTwo = $" {skirmishResult.PlayerOne.Name} пытается увернуться, но {skirmishResult.PlayerTwo.Name} предугадывает!";
 
                 skirmishLogs.Add(new SkirmishLog(skirmishResult.PlayerOne.Name,
                     skirmishResult.PlayerTwo.Name,
-                    $"{skirmishResult.PlayerOne.Name} {GetAction(skirmishResult.PlayerOneBodyHit)} {skirmishResult.PlayerTwo.DativeName}, {GetJoke()}.{eventOne} Нанесено урона: {skirmishResult.PlayerOneInflictedDamage}. Оставшееся здоровье {skirmishResult.PlayerTwo.CurrentHp}.",
-                    $"{skirmishResult.PlayerTwo.Name} {GetAction(skirmishResult.PlayerTwoBodyHit)} {skirmishResult.PlayerOne.DativeName}, {GetJoke()}.{eventTwo} Нанесено урона: {skirmishResult.PlayerTwoInflictedDamage}. Оставшееся здоровье {skirmishResult.PlayerOne.CurrentHp}."));
+                    $"{skirmishResult.PlayerOne.Name} {GetAction(skirmishResult.PlayerOneBodyHit)} {skirmishResult.PlayerTwo.DativeName}, {GetJoke()}.{eventOne} Нанесено урона: {skirmishResult.PlayerOneInflictedDamage}.",
+                    $"{skirmishResult.PlayerTwo.Name} {GetAction(skirmishResult.PlayerTwoBodyHit)} {skirmishResult.PlayerOne.DativeName}, {GetJoke()}.{eventTwo} Нанесено урона: {skirmishResult.PlayerTwoInflictedDamage}."));
             }
 
             _roundLogs.Add(new RoundLog(round, skirmishLogs));

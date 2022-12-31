@@ -51,7 +51,7 @@ namespace FightClub.WinFormsCommentator
             {
                 ResetAll();
                 Battle battle = await _fightClubHttpClient.GetBattleAsync();
-                if (battle != null)
+                if (battle != null && !battle.IsFinished)
                 {
                     await ProcessGameAsync(battle);
                 }
