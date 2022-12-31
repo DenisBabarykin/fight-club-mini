@@ -12,6 +12,7 @@ internal static class ProbabilityCalculator
 
     public static bool IsEventHappened(double eventProbabilityPercent)
     {
-        return Random.NextDouble() <= eventProbabilityPercent / 100;
+        double prob = Random.NextDouble() * 100.0;
+        return prob <= eventProbabilityPercent;
     }
 }
