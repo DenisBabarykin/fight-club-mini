@@ -10,6 +10,7 @@ namespace FightClub.WinFormsCommentator
     {
         private readonly FightClubHttpClient _fightClubHttpClient = new FightClubHttpClient();
 
+        public string pathToImg = "";
         public MainForm()
         {
             InitializeComponent();
@@ -34,6 +35,15 @@ namespace FightClub.WinFormsCommentator
             lblP4hp.TextAlign = ContentAlignment.MiddleCenter;
             lblP5hp.TextAlign = ContentAlignment.MiddleCenter;
             lblP6hp.TextAlign = ContentAlignment.MiddleCenter;
+
+            string curDir = Environment.CurrentDirectory.ToString();
+            MessageBox.Show(curDir);
+            string[] partOfDir = curDir.Split('\\');
+            for (int i = 0; i < partOfDir.Length-3; i++)
+            {
+                pathToImg += partOfDir[i] + '\\';
+            }
+            pathToImg += "img\\";
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -229,7 +239,7 @@ namespace FightClub.WinFormsCommentator
             initiateItems(num, player);
             if (num == 0)
             {
-                //pbPlayer1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
+                pbPlayer1.Image = Image.FromFile(pathToImg+player.AvatarId+".png");
 
                 lblPlayer1Name.Text = player.Name;
                 pbP1hp.Maximum = player.MaxHp;
@@ -252,7 +262,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 1)
             {
-                //pbPlayer2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
+                pbPlayer2.Image = Image.FromFile(pathToImg + player.AvatarId+".png");
 
                 lblPlayer2Name.Text = player.Name;
                 pbP2hp.Maximum = player.MaxHp;
@@ -275,7 +285,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 2)
             {
-                //pbPlayer3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+player.AvatarId+".png");
+                pbPlayer3.Image = Image.FromFile(pathToImg + player.AvatarId+".png");
 
                 lblPlayer3Name.Text = player.Name;
                 pbP3hp.Maximum = player.MaxHp;
@@ -299,7 +309,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 3)
             {
-                //pbPlayer4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
+                pbPlayer4.Image = Image.FromFile(pathToImg + player.AvatarId + ".png");
 
                 lblPlayer4Name.Text = player.Name;
                 pbP4hp.Maximum = player.MaxHp;
@@ -322,7 +332,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 4)
             {
-                //pbPlayer5.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
+                pbPlayer5.Image = Image.FromFile(pathToImg + player.AvatarId + ".png");
 
                 lblPlayer5Name.Text = player.Name;
                 pbP5hp.Maximum = player.MaxHp;
@@ -345,7 +355,7 @@ namespace FightClub.WinFormsCommentator
             }
             if (num == 5)
             {
-                //pbPlayer6.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + player.AvatarId + ".png");
+                pbPlayer6.Image = Image.FromFile(pathToImg + player.AvatarId + ".png");
 
                 lblPlayer6Name.Text = player.Name;
                 pbP6hp.Maximum = player.MaxHp;
@@ -424,25 +434,25 @@ namespace FightClub.WinFormsCommentator
 
         private void initiateItems(int num, Player player)
         {
-            /*
+            
             if (num == 0)
                 foreach (var item in player.Items)
                 {
                     if (item >= 10 && item < 20)
                     {
-                        pbPlayer1item1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\"+item+".png");
+                        pbPlayer1item1.Image = Image.FromFile(pathToImg+item+".png");
                     }
                     if (item >= 20 && item < 30)
                     {
-                        pbPlayer1item2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer1item2.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 30 && item < 40)
                     {
-                        pbPlayer1item3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer1item3.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 40)
                     {
-                        pbPlayer1item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer1item4.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                 }
             if (num == 1)
@@ -450,19 +460,19 @@ namespace FightClub.WinFormsCommentator
                 {
                     if (item >= 10 && item < 20)
                     {
-                        pbPlayer2item1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer2item1.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 20 && item < 30)
                     {
-                        pbPlayer2item2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer2item2.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 30 && item < 40)
                     {
-                        pbPlayer2item3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer2item3.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 40)
                     {
-                        pbPlayer2item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer2item4.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                 }
             if (num == 2)
@@ -470,19 +480,19 @@ namespace FightClub.WinFormsCommentator
                 {
                     if (item >= 10 && item < 20)
                     {
-                        pbPlayer3item1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer3item1.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 20 && item < 30)
                     {
-                        pbPlayer3item2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer3item2.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 30 && item < 40)
                     {
-                        pbPlayer3item3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer3item3.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 40)
                     {
-                        pbPlayer3item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer3item4.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                 }
             if (num == 3)
@@ -490,19 +500,19 @@ namespace FightClub.WinFormsCommentator
                 {
                     if (item >= 10 && item < 20)
                     {
-                        pbPlayer4item1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer4item1.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 20 && item < 30)
                     {
-                        pbPlayer4item2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer4item2.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 30 && item < 40)
                     {
-                        pbPlayer4item3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer4item3.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 40)
                     {
-                        pbPlayer4item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer4item4.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                 }
             if (num == 4)
@@ -510,19 +520,19 @@ namespace FightClub.WinFormsCommentator
                 {
                     if (item >= 10 && item < 20)
                     {
-                        pbPlayer5item1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer5item1.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 20 && item < 30)
                     {
-                        pbPlayer5item2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer5item2.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 30 && item < 40)
                     {
-                        pbPlayer5item3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer5item3.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 40)
                     {
-                        pbPlayer5item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer5item4.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                 }
             if (num == 5)
@@ -530,22 +540,22 @@ namespace FightClub.WinFormsCommentator
                 {
                     if (item >= 10 && item < 20)
                     {
-                        pbPlayer6item1.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer6item1.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 20 && item < 30)
                     {
-                        pbPlayer6item2.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer6item2.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 30 && item < 40)
                     {
-                        pbPlayer6item3.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer6item3.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                     if (item >= 40)
                     {
-                        pbPlayer6item4.Image = Image.FromFile("E:\\VS repos\\src\\FightClub.WinFormsCommentator\\img\\" + item + ".png");
+                        pbPlayer6item4.Image = Image.FromFile(pathToImg + item + ".png");
                     }
                 }
-            */
+            
         }
         private async void button1_Click(object sender, EventArgs e)
         {
