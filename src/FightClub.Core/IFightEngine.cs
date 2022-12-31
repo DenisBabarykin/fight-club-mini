@@ -12,4 +12,6 @@ public interface IFightEngine
     public void SetParams(FightEngineParams fightEngineParams);
 
     public int CalcMaxHp(int endurancePoints);
+
+    public List<SkirmishResult> ProcessRound(List<PlayerAttack> attacks, List<PlayerDefense> defenses);
 }

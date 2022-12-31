@@ -21,9 +21,9 @@ namespace FightClub.Dto
         public Team TeamTwo { get; set; } = new Team();
 
         /// <summary>
-        /// Номер раунда. Начинается с 1.
+        /// Номер раунда. После инициализации в BattleManager.InitRoundAsync() начинается с 1.
         /// </summary>
-        public int Round { get; set; } = 1;
+        public int Round { get; set; } = 0;
 
         /// <summary>
         /// Закончился ли бой. True если да, False иначе.

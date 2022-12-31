@@ -1,4 +1,5 @@
 using FightClub.Core;
+using FightClub.FileUtils;
 
 namespace FightClub.Server;
 
@@ -10,7 +11,12 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews().AddNewtonsoftJson();
-        builder.Services.AddSingleton<IFightClubFacade, FightClubMockFacade>();
+        builder.Services.AddSingleton<IActionExtractor, ActionExtractor>();
+        builder.Services.AddSingleton<IJokeExtractor, JokeExtractor>();
+        builder.Services.AddSingleton<IFightEngine, FightEngine>();
+        builder.Services.AddSingleton<ICommentator, Commentator>();
+        builder.Services.AddSingleton<IBattleManager, BattleManager>();
+        builder.Services.AddSingleton<IFightClubFacade, FightClubFacade>();
 
         var app = builder.Build();
 
@@ -31,7 +37,8 @@ public class Program
 
         if (app.Environment.IsDevelopment())
         {
-            app.Run();
+            //app.Run();
+            app.Run("http://0.0.0.0:5000");
         }
         else
         {
