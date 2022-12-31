@@ -117,7 +117,7 @@ public class FightEngine : IFightEngine
         playerOne.CurrentHp = playerOne.CurrentHp < 0 ? 0 : playerOne.CurrentHp;
         playerTwo.CurrentHp -= playerOneInflictedDamage;
         playerTwo.CurrentHp = playerTwo.CurrentHp < 0 ? 0 : playerTwo.CurrentHp;
-        return new SkirmishResult(playerOne, playerOneInflictedDamage, playerOneEvent, playerTwo,
-            playerTwoInflictedDamage, playerTwoEvent);
+        return new SkirmishResult(playerOne, playerOneInflictedDamage, skirmish.PlayerOneHit, playerOneEvent, playerTwo,
+            playerTwoInflictedDamage, skirmish.PlayerTwoHit, playerTwoEvent);
     }
 }

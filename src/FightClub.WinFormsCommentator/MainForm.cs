@@ -201,7 +201,11 @@ namespace FightClub.WinFormsCommentator
         private async Task ProcessGameAsync(Battle initBattle)
         {
             RoundLog initLog = await _fightClubHttpClient.GetRoundLogAsync(initBattle.Round);
-            ProcessNewRound(initBattle, initLog);
+            if (initLog != null)
+            {
+                ProcessNewRound(initBattle, initLog);
+            }
+
             int lastProcessedRound = initBattle.Round;
             bool finished = false;
 
