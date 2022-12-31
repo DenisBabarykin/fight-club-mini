@@ -82,7 +82,8 @@ public class BattleManager : IBattleManager
             // Если все приняли свои решения, то пора завершать раунд и обсчитывать результаты
             if (!_roundUpcomingDecisions.ToList().Any(decision => decision.Value.Any()))
             {
-                _fightEngine.ProcessRound(_roundAttacks, _roundDefenses);
+                var roundResults = _fightEngine.ProcessRound(_roundAttacks, _roundDefenses);
+                await _commentator.AppendRoundLogs(roundResults);
                 if (_battle.TeamOne.IsAlive() && _battle.TeamTwo.IsAlive())
                 {
                     InitRound();

@@ -11,5 +11,7 @@ public interface ICommentator
 {
     Task<RoundLog?> GetLogsAsync(int round);
 
+    Task AppendRoundLogs(List<SkirmishResult> skirmishResults);
+
     Task ResetAsync();
 }

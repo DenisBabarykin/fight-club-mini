@@ -13,21 +13,27 @@ public class SkirmishResult
 
     public int PlayerOneInflictedDamage { get; }
 
+    public BodyParts PlayerOneBodyHit { get; }
+
     public EventType PlayerOneEvent { get; }
 
     public Player PlayerTwo { get; }
 
-    public int PlayerTwoInfilctedDamage { get; }
+    public int PlayerTwoInflictedDamage { get; }
+
+    public BodyParts PlayerTwoBodyHit { get; }
 
     public EventType PlayerTwoEvent { get; }
 
-    public SkirmishResult(Player playerOne, int playerOneInflictedDamage, EventType playerOneEvent, Player playerTwo, int playerTwoInfilctedDamage, EventType playerTwoEvent)
+    public SkirmishResult(Player playerOne, int playerOneInflictedDamage, BodyParts playerOneBodyHit, EventType playerOneEvent, Player playerTwo, int playerTwoInfilctedDamage, BodyParts playerTwoBodyHit, EventType playerTwoEvent)
     {
         PlayerOne = playerOne;
         PlayerOneInflictedDamage = playerOneInflictedDamage;
+        PlayerOneBodyHit = playerOneBodyHit;
         PlayerOneEvent = playerOneEvent;
         PlayerTwo = playerTwo;
-        PlayerTwoInfilctedDamage = playerTwoInfilctedDamage;
+        PlayerTwoInflictedDamage = playerTwoInfilctedDamage;
+        PlayerTwoBodyHit = playerTwoBodyHit;
         PlayerTwoEvent = playerTwoEvent;
     }
 }

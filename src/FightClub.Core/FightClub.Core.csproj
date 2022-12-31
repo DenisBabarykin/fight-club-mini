@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\FightClub.Dto\FightClub.Dto.csproj" />
+	  <ProjectReference Include="..\FightClub.FileUtils\FightClub.FileUtils.csproj" />
 	</ItemGroup>
 
 </Project>
